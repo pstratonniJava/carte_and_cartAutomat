@@ -75,7 +75,7 @@ public class Automat {
         }
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Wie viele Geld wollen Sie %s\n",isInPut ? "eingeben":"ausgeben");
-        int amout = scanner.nextInt();
+        double amout = scanner.nextDouble();
         boolean success = this.card.setBalance(amout, isInPut);
         if(success) {
             System.out.printf("%s\n",isInPut ? "Geld wurde erfolgreich gespeichert":"Nehmen Sie Geld");

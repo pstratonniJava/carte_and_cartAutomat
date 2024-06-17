@@ -1,5 +1,6 @@
 package GeldAutomat;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Automat {
@@ -7,9 +8,13 @@ public class Automat {
     int countPin;
 
     public void start(Card card) {
-        Scanner scanner = new Scanner(System.in);
         this.countPin = 0;
         this.card = card;
+        if (this.card.getData().isBefore(LocalDate.now())){
+            System.out.println("Ihre Karte ist schon alt");
+            return;
+        }
+        Scanner scanner = new Scanner(System.in);
         String out = "";
         while (true){
             System.out.println("""

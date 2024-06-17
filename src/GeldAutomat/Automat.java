@@ -3,13 +3,13 @@ package GeldAutomat;
 import java.util.Scanner;
 
 public class Automat {
-    Karte karte;
+    Card card;
     int countPin;
 
-    public void start(Karte karte) {
+    public void start(Card card) {
         Scanner scanner = new Scanner(System.in);
         this.countPin = 0;
-        this.karte = karte;
+        this.card = card;
         String out = "";
         while (true){
             System.out.println("""
@@ -55,7 +55,7 @@ public class Automat {
         Scanner scanner = new Scanner(System.in);
         while (true){
             int pin = scanner.nextInt();
-            if(pin!= this.karte.getPin()) {
+            if(pin!= this.card.getPin()) {
                 this.countPin++;
                 if(this.countPin==3){
                     return false;
@@ -75,11 +75,11 @@ public class Automat {
         }
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Wie viele Geld wollen Sie %s\n",isInPut ? "eingeben":"ausgeben");
-        int betrag = scanner.nextInt();
-        boolean erfolg = this.karte.setBalance(betrag, isInPut);
-        if(erfolg) {
+        int amout = scanner.nextInt();
+        boolean success = this.card.setBalance(amout, isInPut);
+        if(success) {
             System.out.printf("%s\n",isInPut ? "Geld wurde erfolgreich gespeichert":"Nehmen Sie Geld");
-            System.out.println("Ihr Kontostand ist " + this.karte.getBalance());
+            System.out.println("Ihr Kontostand ist " + this.card.getBalance());
         }
     }
 
@@ -88,7 +88,7 @@ public class Automat {
         if (!this.pinChek()){
             return;
         }
-        System.out.println("Ihr Kontostand ist " + this.karte.getBalance());
+        System.out.println("Ihr Kontostand ist " + this.card.getBalance());
     }
 
     public void pinChange() {
@@ -99,7 +99,7 @@ public class Automat {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Geben Sie neue PIN ein");
         int pin = scanner.nextInt();
-        this.karte.setPin(pin);
+        this.card.setPin(pin);
         System.out.println("PIN wurde erfolgreich gespeichert");
     }
 }

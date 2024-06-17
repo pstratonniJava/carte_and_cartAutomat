@@ -1,12 +1,12 @@
 package GeldAutomat;
 
-public class Karte {
+public class Card {
     private int pin;
     private String owner;
     private double balance = 0;
 
 
-    public Karte(int pin, String owner) {
+    public Card(int pin, String owner) {
         this.pin = pin;
         this.owner = owner;
     }
@@ -22,12 +22,12 @@ public class Karte {
         return balance;
     }
 
-    public boolean setBalance(double betrag, boolean eingeben) {
-        if (!eingeben  && betrag > this.balance){
+    public boolean setBalance(double amount, boolean input) {
+        if (!input  && amount > this.balance){
             System.out.println("Nicht genug Geld");
             return false;
         }
-        this.balance = eingeben ? this.balance + betrag: this.balance - betrag;
+        this.balance = input ? this.balance + amount: this.balance - amount;
         return true;
     }
 

@@ -17,14 +17,14 @@ public class Automat {
         Scanner scanner = new Scanner(System.in);
         String out = "";
         while (true){
-            System.out.println("""
+            System.out.println(  """
                 Was wünschen Sie?
                 Bei Ausgabe drücken Sie 1
                 Bei Eingabe drücken Sie 2
                 Bei Kontostand drücken Sie 3
                 PIN-änderung drücken Sie 4
                 Karte aus? Drücken Sie 5
-                """);
+                """ );
             int selection = scanner.nextInt();
             switch (selection) {
                 case 1:
@@ -93,7 +93,19 @@ public class Automat {
         if (!this.pinChek()){
             return;
         }
-        System.out.println("Ihr Kontostand ist " + this.card.getBalance());
+        if (this.card instanceof DebitCard){
+            System.out.println("Ihr Kontostand ist " + this.card.getBalance());
+            return;
+        }
+        CreditCard card = (CreditCard) this.card;
+        System.out.printf("""
+                Ihr aktueller Kontostand ist %f
+                Ihr Kreditlimit ist %f
+                """, card.getBalance(), card.getCreditLimit());
+        System.out.printf(card.getBalance()-card.getCreditLimit() > 0 ? "\n":
+                "Deine Schulden ist %f\nZahlungsfrist bis %t\n",(card.getCreditLimit()-card.getBalance()), card.getInterestDate());
+
+
     }
 
     public void pinChange() {
